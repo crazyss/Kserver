@@ -40,6 +40,8 @@ void serve_dynamic(int fd, char *filename, char *cgiargs)
     Rio_writen(fd, buf, strlen(buf));
     sprintf(buf, "Server: King Web Server\r\n");
     Rio_writen(fd, buf, strlen(buf));
+    sprintf(buf, "\r\n");
+    Rio_writen(fd, buf, strlen(buf));
     if (Fork() == 0) { /*child*/
         setenv("QUERY_STRING", cgiargs, 1);
         Dup2(fd, STDOUT_FILENO);
